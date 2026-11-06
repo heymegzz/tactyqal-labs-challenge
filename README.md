@@ -2,7 +2,7 @@
 
 A full-stack hiring challenge by Meghna Nair. An illustrated, four-stage notebook introduces the mentoring program. The student-project index, public journal and protected editorial desk share one responsive interface.
 
-[Recorded walkthrough](docs/walkthrough.webm) · [Walkthrough script](docs/walkthrough.md) · [API contract](docs/api.md) · [WordPress transition](docs/migration.md)
+[Live project](https://tactyqal-build-notebook-meghna.dustyangel.chatgpt.site) · [Recorded walkthrough](docs/walkthrough.webm) · [Walkthrough script](docs/walkthrough.md) · [API contract](docs/api.md) · [WordPress transition](docs/migration.md)
 
 ![Desktop homepage](docs/home-desktop.png)
 
