@@ -20,8 +20,6 @@ const command =
 const proc = spawnSync(
   process.execPath,
   [
-    "--import",
-    "./scripts/sites-env.mjs",
     "./node_modules/wrangler/bin/wrangler.js",
     ...command,
     "--config",

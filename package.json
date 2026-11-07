@@ -6,15 +6,17 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "install:ci": "node scripts/install-ci.mjs",
-    "dev": "node scripts/run-framework.mjs dev",
-    "build": "node scripts/run-framework.mjs build",
+    "dev": "vinext dev",
+    "build": "vinext build",
     "start": "node scripts/local-db.mjs serve",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "node scripts/local-db.mjs migrate",
     "typecheck": "tsc --noEmit",
-    "test:api": "node --env-file=.dev.vars tests/api.mjs"
+    "test:api": "node --env-file=.dev.vars tests/api.mjs",
+    "deploy:migrate": "node scripts/deploy.mjs migrate",
+    "deploy:worker": "node scripts/deploy.mjs deploy",
+    "deploy:secret": "node scripts/deploy.mjs secret"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

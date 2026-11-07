@@ -2,7 +2,7 @@
 
 A full-stack hiring challenge by Meghna Nair. An illustrated, four-stage notebook introduces the mentoring program. The student-project index, public journal and protected editorial desk share one responsive interface.
 
-[Live project](https://tactyqal-build-notebook-meghna.dustyangel.chatgpt.site) · [Recorded walkthrough](docs/walkthrough.webm) · [Walkthrough script](docs/walkthrough.md) · [API contract](docs/api.md) · [WordPress transition](docs/migration.md)
+[Live project](https://tactyqal-notebook.heymegzz.workers.dev) · [Recorded walkthrough](docs/walkthrough.webm) · [Walkthrough script](docs/walkthrough.md) · [API contract](docs/api.md) · [WordPress transition](docs/migration.md)
 
 ![Desktop homepage](docs/home-desktop.png)
 
@@ -50,9 +50,15 @@ The integration test creates and deletes its own post. It exercises anonymous wr
 
 ## Deployment
 
-The `.openai/hosting.json` manifest binds a Sites Worker to its own D1 database. Set the server-side `ADMIN_KEY` secret in Sites, build the Worker, package the generated `dist/` artifact and deploy the matching source revision. The artifact includes `dist/.openai/drizzle`; the host applies schema migrations before activating the Worker. Public access lets reviewers read the homepage and published journal. The editor requires its separate secret. For a new deployment in a different account, create a separate Site identity and database.
+The Worker runs on Cloudflare with a D1 binding named `DB`. Run `npx wrangler login`, create a dedicated database with `npx wrangler d1 create tactyqal-notebook`, and set `D1_DATABASE_ID` to its returned UUID. Then run:
 
-For self-managed Cloudflare, create a D1 database, supply its actual ID in your own Wrangler config, point `main` to the built Worker and the assets directory to `dist/client`, set `migrations_dir` to `drizzle`, apply D1 migrations remotely, configure the secret with Wrangler, and deploy. The generated local placeholder database ID is for the emulator only.
+```sh
+npm run build
+npm run deploy:migrate
+npm run deploy:worker
+```
+
+The deployment script refuses the local emulator ID. It uses the same built Worker and static assets as local verification. Configure the editor secret with `npm run deploy:secret` and enter a private, randomly generated key at the prompt. The admin login fails closed until this secret is set. Wrangler prints the assigned public URL after deployment.
 
 ## Decisions and limits
 
